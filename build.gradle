@@ -20,7 +20,7 @@ subprojects {
 
     dependencies {
         implementation "org.springframework:spring-context:$springVersion"
-
+        implementation 'org.springframework.boot:spring-boot-starter-aop:3.1.4'
         testImplementation "org.springframework:spring-test:$springVersion"
         testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
