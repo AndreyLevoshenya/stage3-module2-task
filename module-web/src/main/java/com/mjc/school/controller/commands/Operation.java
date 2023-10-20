@@ -12,10 +12,10 @@ public enum Operation {
     UPDATE_AUTHOR(9, "Update author."),
     REMOVE_AUTHOR_BY_ID(10, "Remove author by id.");;
 
+    public static final String OPERATION = "Operation: ";
     private final Integer operationNumber;
     private final String operation;
 
-    public static final String OPERATION = "Operation: ";
     Operation(int operationNumber, String operation) {
         this.operationNumber = operationNumber;
         this.operation = operation;

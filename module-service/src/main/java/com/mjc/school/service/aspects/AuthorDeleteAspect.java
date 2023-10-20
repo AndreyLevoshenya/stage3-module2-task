@@ -24,12 +24,13 @@ public class AuthorDeleteAspect {
     }
 
     @Pointcut("@annotation(com.mjc.school.service.annotations.OnDelete)")
-    private void onDelete(){}
+    private void onDelete() {
+    }
 
     @Around("onDelete()")
     public boolean deleteNews(ProceedingJoinPoint pjp) {
         Object obj = pjp.getArgs()[0];
-        if(obj instanceof Long id) {
+        if (obj instanceof Long id) {
             List<Long> deleteList = new ArrayList<>();
             for (NewsDtoResponse news : service.readAll()) {
                 if (id.equals(news.getAuthorId())) {

@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 public class AuthorController implements BaseController<AuthorDtoRequest, AuthorDtoResponse, Long> {
     private final BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> service;
+
     @Autowired
     public AuthorController(BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> service) {
         this.service = service;

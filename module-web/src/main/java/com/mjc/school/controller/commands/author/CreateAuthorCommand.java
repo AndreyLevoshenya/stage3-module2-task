@@ -37,7 +37,7 @@ public class CreateAuthorCommand implements Command {
                         AuthorDtoRequest request = getAuthorDtoRequestFromKeyboard();
                         try {
                             AuthorDtoResponse authorDtoResponse = (AuthorDtoResponse) method.invoke(controller, request);
-                            if(authorDtoResponse != null) {
+                            if (authorDtoResponse != null) {
                                 System.out.println(authorDtoResponse);
                             }
                         } catch (InvocationTargetException | IllegalAccessException e) {

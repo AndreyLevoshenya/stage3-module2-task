@@ -1,11 +1,12 @@
 package com.mjc.school.controller.commands.news;
 
-import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.controller.BaseController;
 import com.mjc.school.controller.annotations.CommandHandler;
 import com.mjc.school.controller.commands.Command;
+import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
+import com.mjc.school.service.exceptions.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +33,7 @@ public class GetAllNewsCommand implements Command {
                 System.out.println(Operation.GET_ALL_NEWS.getOperation());
                 try {
                     List<NewsDtoResponse> newsDtoResponseList = (List<NewsDtoResponse>) method.invoke(controller);
-                    if(newsDtoResponseList != null) {
+                    if (newsDtoResponseList != null) {
                         for (NewsDtoResponse newsDtoResponse : newsDtoResponseList) {
                             System.out.println(newsDtoResponse);
                         }

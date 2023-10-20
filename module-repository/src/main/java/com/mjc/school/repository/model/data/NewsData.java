@@ -14,11 +14,18 @@ import static com.mjc.school.repository.utils.Utils.getRandomDate;
 public class NewsData {
     private static final String NEWS_FILENAME = "news";
     private static final String CONTENT_FILENAME = "content";
-    private List<NewsModel> newsModelList;
     private static NewsData newsData;
+    private List<NewsModel> newsModelList;
 
     private NewsData(List<AuthorModel> authorModelList) {
         init(authorModelList);
+    }
+
+    public static NewsData getNewsData(List<AuthorModel> authorModelList) {
+        if (newsData == null) {
+            newsData = new NewsData(authorModelList);
+        }
+        return newsData;
     }
 
     private void init(List<AuthorModel> authorModelList) {
@@ -36,13 +43,6 @@ public class NewsData {
                             date,
                             authorModelList.get(random.nextInt(authorModelList.size())).getId()));
         }
-    }
-
-    public static NewsData getNewsData(List<AuthorModel> authorModelList) {
-        if(newsData == null) {
-            newsData = new NewsData(authorModelList);
-        }
-        return newsData;
     }
 
     public List<NewsModel> getNewsModelList() {

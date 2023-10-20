@@ -1,10 +1,10 @@
 package com.mjc.school.controller.commands.news;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.controller.commands.Command;
-import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.controller.annotations.CommandBody;
 import com.mjc.school.controller.annotations.CommandHandler;
+import com.mjc.school.controller.commands.Command;
+import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import org.springframework.stereotype.Component;
@@ -42,7 +42,7 @@ public class UpdateNewsCommand implements Command {
                         request.setId(id);
                         try {
                             NewsDtoResponse newsDtoResponse = (NewsDtoResponse) method.invoke(controller, request);
-                            if(newsDtoResponse != null) {
+                            if (newsDtoResponse != null) {
                                 System.out.println(newsDtoResponse);
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {

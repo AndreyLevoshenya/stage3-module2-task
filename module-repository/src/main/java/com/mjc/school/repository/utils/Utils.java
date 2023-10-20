@@ -1,7 +1,5 @@
 package com.mjc.school.repository.utils;
 
-import com.mjc.school.repository.model.AuthorModel;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +8,6 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Random;
 
 public class Utils {

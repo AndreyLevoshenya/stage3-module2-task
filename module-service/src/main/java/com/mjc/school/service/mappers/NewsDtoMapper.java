@@ -9,10 +9,11 @@ public class NewsDtoMapper {
     private final ModelMapper modelMapper = new ModelMapper();
 
     public NewsDtoResponse modelToDto(NewsModel news) {
-            return modelMapper.map(news, NewsDtoResponse.class);
+        return modelMapper.map(news, NewsDtoResponse.class);
     }
+
     public NewsModel dtoToModel(NewsDtoRequest dtoRequest) {
-            return modelMapper.map(dtoRequest, NewsModel.class);
-        }
+        return modelMapper.map(dtoRequest, NewsModel.class);
+    }
 
 }

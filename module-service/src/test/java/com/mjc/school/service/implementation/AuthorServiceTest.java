@@ -1,41 +1,33 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.implementation.AuthorRepository;
 import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.exceptions.NotFoundException;
 import com.mjc.school.service.exceptions.ValidationException;
+import com.mjc.school.service.implementation.config.AspectsConfig;
+import com.mjc.school.service.implementation.config.AuthorTestConfig;
 import com.mjc.school.service.mappers.AuthorDtoMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.runner.RunWith;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@EnableAspectJAutoProxy
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class)
+@SpringBootTest(classes = {AuthorTestConfig.class, AspectsConfig.class})
 class AuthorServiceTest {
+    @Autowired
     private BaseRepository<AuthorModel, Long> repository;
+    @Autowired
     private BaseService<AuthorDtoRequest, AuthorDtoResponse, Long> service;
-    private AuthorDtoMapper mapper;
+    private final AuthorDtoMapper mapper = new AuthorDtoMapper();
 
-    @BeforeEach
-    void setUp() {
-        repository = new AuthorRepository();
-        service = new AuthorService(repository);
-        mapper = new AuthorDtoMapper();
-    }
 
     @Test
     void canGetAllAuthors() {
@@ -100,7 +92,7 @@ class AuthorServiceTest {
     }
 
     @ParameterizedTest
-    @CsvSource( value = {
+    @CsvSource(value = {
             "au",
             "authorAuthorAuthor"})
     void updateInvalidAuthor(String newName) {

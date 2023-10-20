@@ -7,9 +7,9 @@ import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.exceptions.ValidationException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-import org.aspectj.lang.annotation.Aspect;
 
 import java.lang.reflect.Field;
 

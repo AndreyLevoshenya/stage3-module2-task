@@ -1,41 +1,33 @@
 package com.mjc.school.service.implementation;
 
 import com.mjc.school.repository.BaseRepository;
-import com.mjc.school.repository.implementation.NewsRepository;
 import com.mjc.school.repository.model.NewsModel;
 import com.mjc.school.service.BaseService;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exceptions.NotFoundException;
 import com.mjc.school.service.exceptions.ValidationException;
+import com.mjc.school.service.implementation.config.AspectsConfig;
+import com.mjc.school.service.implementation.config.NewsTestConfig;
 import com.mjc.school.service.mappers.NewsDtoMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.runner.RunWith;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@EnableAspectJAutoProxy
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class)
+@SpringBootTest(classes = {NewsTestConfig.class, AspectsConfig.class})
 class NewsServiceTest {
+    @Autowired
     private BaseRepository<NewsModel, Long> repository;
+    @Autowired
     private BaseService<NewsDtoRequest, NewsDtoResponse, Long> service;
-    private NewsDtoMapper newsDtoMapper;
 
-    @BeforeEach
-    void setUp() {
-        repository = new NewsRepository();
-        service = new NewsService(repository);
-        newsDtoMapper = new NewsDtoMapper();
-    }
+    private final NewsDtoMapper newsDtoMapper = new NewsDtoMapper();
 
     @Test
     void canGetAllNews() {
@@ -101,7 +93,7 @@ class NewsServiceTest {
     }
 
     @ParameterizedTest
-    @CsvSource( value = {
+    @CsvSource(value = {
             "newT, newContent4, 3",
             "newTitle4, newC, 3",
             "newTitle4, newContent4, 41"})

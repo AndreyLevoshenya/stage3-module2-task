@@ -17,7 +17,6 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
         this.dataSource = DataSource.getInstance();
     }
 
-
     @Override
     public List<AuthorModel> readAll() {
         return dataSource.getAuthorModelList();
@@ -32,10 +31,9 @@ public class AuthorRepository implements BaseRepository<AuthorModel, Long> {
     public AuthorModel create(AuthorModel entity) {
         List<AuthorModel> authorModelList = dataSource.getAuthorModelList();
         authorModelList.sort(Comparator.comparing(AuthorModel::getId));
-        if(!authorModelList.isEmpty()) {
+        if (!authorModelList.isEmpty()) {
             entity.setId(authorModelList.get(authorModelList.size() - 1).getId() + 1);
-        }
-        else {
+        } else {
             entity.setId(1L);
         }
         authorModelList.add(entity);

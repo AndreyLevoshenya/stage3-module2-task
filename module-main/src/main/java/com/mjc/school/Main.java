@@ -6,7 +6,6 @@ import com.mjc.school.controller.commands.news.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
@@ -16,6 +15,7 @@ public class Main {
         ApplicationContext applicationContext = SpringApplication.run(Main.class, args);
         Scanner scanner = new Scanner(System.in);
         MenuPrinter menuPrinter = new MenuPrinter();
+
         while (true) {
             menuPrinter.print();
             Command command = null;
@@ -36,9 +36,12 @@ public class Main {
             }
 
             if (command != null) {
-                command.execute();
+                try {
+                    command.execute();
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
             }
-
         }
     }
 }

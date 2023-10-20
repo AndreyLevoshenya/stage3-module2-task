@@ -11,6 +11,7 @@ public class AuthorDtoMapper {
     public AuthorDtoResponse modelToDto(AuthorModel news) {
         return modelMapper.map(news, AuthorDtoResponse.class);
     }
+
     public AuthorModel dtoToModel(AuthorDtoRequest dtoRequest) {
         return modelMapper.map(dtoRequest, AuthorModel.class);
     }

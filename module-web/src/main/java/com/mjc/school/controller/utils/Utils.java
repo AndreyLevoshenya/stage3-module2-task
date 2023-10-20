@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.mjc.school.controller.utils.Constants.*;
+import static com.mjc.school.service.exceptions.ExceptionErrorCodes.ID_IS_WRONG;
 
 public class Utils {
     public static NewsDtoRequest getNewsDtoRequestFromKeyboard() {
@@ -34,11 +35,11 @@ public class Utils {
                 id = new Scanner(System.in).nextLong();
                 idIsValid = true;
             } catch (InputMismatchException e) {
-                if(param.equals(NEWS_ID)) {
-                    throw new ValidationException(NEWS_ID_SHOULD_BE_A_NUMBER);
+                if (param.equals(NEWS_ID)) {
+                    throw new ValidationException(String.format(ID_IS_WRONG.getErrorMessage(), NEWS_ID));
                 }
-                if(param.equals(AUTHOR_ID)) {
-                    throw new ValidationException(AUTHOR_ID_SHOULD_BE_A_NUMBER);
+                if (param.equals(AUTHOR_ID)) {
+                    throw new ValidationException(String.format(ID_IS_WRONG.getErrorMessage(), AUTHOR_ID));
                 }
             }
         }

@@ -1,12 +1,13 @@
 package com.mjc.school.controller.commands.news;
 
 import com.mjc.school.controller.BaseController;
-import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.controller.annotations.CommandHandler;
 import com.mjc.school.controller.annotations.CommandParam;
 import com.mjc.school.controller.commands.Command;
+import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
+import com.mjc.school.service.exceptions.ValidationException;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,21 +27,20 @@ public class GetNewsByIdCommand implements Command {
         this.controller = controller;
     }
 
-
     @Override
     public void execute() {
         Method[] methods = controller.getClass().getMethods();
         for (Method method : methods) {
-            if(operation.getOperationNumber().equals(method.getAnnotation(CommandHandler.class).id())) {
+            if (operation.getOperationNumber().equals(method.getAnnotation(CommandHandler.class).id())) {
                 System.out.println(Operation.GET_NEWS_BY_ID.getOperation());
                 Parameter[] parameters = method.getParameters();
                 for (Parameter parameter : parameters) {
-                    if(parameter.isAnnotationPresent(CommandParam.class)) {
+                    if (parameter.isAnnotationPresent(CommandParam.class)) {
                         System.out.println(ENTER_NEWS_ID);
                         Long param = getLongFromKeyboard(NEWS_ID);
                         try {
                             NewsDtoResponse newsDtoResponse = (NewsDtoResponse) method.invoke(controller, param);
-                            if(newsDtoResponse != null) {
+                            if (newsDtoResponse != null) {
                                 System.out.println(newsDtoResponse);
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {

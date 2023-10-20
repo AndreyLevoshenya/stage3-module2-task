@@ -9,11 +9,9 @@ import com.mjc.school.service.annotations.ValidateId;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.exceptions.NotFoundException;
-import com.mjc.school.service.exceptions.ValidationException;
 import com.mjc.school.service.mappers.AuthorDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -40,10 +38,9 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     @Override
     @ValidateId
     public AuthorDtoResponse readById(Long id) {
-        if(repository.existById(id)) {
+        if (repository.existById(id)) {
             return mapper.modelToDto(repository.readById(id).get());
-        }
-        else {
+        } else {
             throw new NotFoundException(String.format(AUTHOR_DOES_NOT_EXIST.getErrorMessage(), id));
         }
     }
@@ -62,13 +59,12 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     @ValidateId
     @ValidateDto
     public AuthorDtoResponse update(AuthorDtoRequest updateRequest) {
-        if(repository.existById(updateRequest.getId())) {
+        if (repository.existById(updateRequest.getId())) {
             AuthorModel model = mapper.dtoToModel(updateRequest);
             LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
             model.setLastUpdateDate(date);
             return mapper.modelToDto(repository.update(model));
-        }
-        else {
+        } else {
             throw new NotFoundException(String.format(AUTHOR_DOES_NOT_EXIST.getErrorMessage(), updateRequest.getId()));
         }
     }
@@ -78,10 +74,9 @@ public class AuthorService implements BaseService<AuthorDtoRequest, AuthorDtoRes
     @ValidateId
     @OnDelete
     public boolean deleteById(Long id) {
-        if(repository.existById(id)) {
+        if (repository.existById(id)) {
             return repository.deleteById(id);
-        }
-        else {
+        } else {
             throw new NotFoundException(String.format(AUTHOR_DOES_NOT_EXIST.getErrorMessage(), id));
         }
     }

@@ -37,10 +37,9 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @Override
     @ValidateId
     public NewsDtoResponse readById(Long id) {
-        if(repository.existById(id)) {
+        if (repository.existById(id)) {
             return mapper.modelToDto(repository.readById(id).get());
-        }
-        else {
+        } else {
             throw new NotFoundException(String.format(NEWS_DOES_NOT_EXIST.getErrorMessage(), id));
         }
     }
@@ -59,13 +58,12 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @ValidateId
     @ValidateDto
     public NewsDtoResponse update(NewsDtoRequest updateRequest) {
-        if(repository.existById(updateRequest.getId())) {
+        if (repository.existById(updateRequest.getId())) {
             NewsModel model = mapper.dtoToModel(updateRequest);
             LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
             model.setLastUpdatedDate(date);
             return mapper.modelToDto(repository.update(model));
-        }
-        else {
+        } else {
             throw new NotFoundException(String.format(NEWS_DOES_NOT_EXIST.getErrorMessage(), updateRequest.getId()));
         }
     }
@@ -73,10 +71,9 @@ public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse,
     @Override
     @ValidateId
     public boolean deleteById(Long id) {
-        if(repository.existById(id)) {
+        if (repository.existById(id)) {
             return repository.deleteById(id);
-        }
-        else {
+        } else {
             throw new NotFoundException(String.format(NEWS_DOES_NOT_EXIST.getErrorMessage(), id));
         }
     }

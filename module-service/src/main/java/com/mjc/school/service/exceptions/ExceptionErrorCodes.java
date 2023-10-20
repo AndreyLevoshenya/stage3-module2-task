@@ -1,7 +1,6 @@
 package com.mjc.school.service.exceptions;
 
 public enum ExceptionErrorCodes {
-
     NEWS_DOES_NOT_EXIST(Constants.ERROR_CODE_000001, "News with id %d does not exist"),
     AUTHOR_DOES_NOT_EXIST(Constants.ERROR_CODE_000002, "Author id does not exist. Author id is: %s"),
     TITLE_LENGTH_IS_WRONG(Constants.ERROR_CODE_000003, "Title length is wrong. Title field should have length of value from 5 to 30. News title is %s"),

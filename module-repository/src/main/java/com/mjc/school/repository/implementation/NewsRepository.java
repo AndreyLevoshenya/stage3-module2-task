@@ -31,10 +31,9 @@ public class NewsRepository implements BaseRepository<NewsModel, Long> {
     public NewsModel create(NewsModel entity) {
         List<NewsModel> newsModelList = dataSource.getNewsModelList();
         newsModelList.sort(Comparator.comparing(NewsModel::getId));
-        if(!newsModelList.isEmpty()) {
+        if (!newsModelList.isEmpty()) {
             entity.setId(newsModelList.get(newsModelList.size() - 1).getId() + 1);
-        }
-        else {
+        } else {
             entity.setId(1L);
         }
         newsModelList.add(entity);

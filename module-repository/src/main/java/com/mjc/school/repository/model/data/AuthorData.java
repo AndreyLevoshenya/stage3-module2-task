@@ -11,15 +11,15 @@ import static com.mjc.school.repository.utils.Utils.getRandomDate;
 
 public class AuthorData {
     private static final String AUTHORS_FILENAME = "authors";
-    private List<AuthorModel> authorModelList;
     private static AuthorData authorData;
+    private List<AuthorModel> authorModelList;
 
     private AuthorData() {
         init();
     }
 
     public static AuthorData getAuthorData() {
-        if(authorData == null) {
+        if (authorData == null) {
             authorData = new AuthorData();
         }
         return authorData;

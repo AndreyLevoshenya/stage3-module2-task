@@ -6,6 +6,7 @@ import com.mjc.school.controller.commands.Command;
 import com.mjc.school.controller.commands.Operation;
 import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.AuthorDtoResponse;
+import com.mjc.school.service.exceptions.ValidationException;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,9 +30,9 @@ public class GetAllAuthorsCommand implements Command {
                 System.out.println(Operation.GET_ALL_AUTHORS.getOperation());
                 try {
                     List<AuthorDtoResponse> authorDtoResponseList = (List<AuthorDtoResponse>) method.invoke(controller);
-                    if(authorDtoResponseList != null) {
+                    if (authorDtoResponseList != null) {
                         for (AuthorDtoResponse authorDtoResponse : authorDtoResponseList)
-                        System.out.println(authorDtoResponse);
+                            System.out.println(authorDtoResponse);
                     }
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     System.out.println(e.getCause().getMessage());
